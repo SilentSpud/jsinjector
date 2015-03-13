@@ -1,0 +1,29 @@
+{
+   "background": {
+      "page": "background.html"
+   },
+   "browser_action": {
+      "default_title": "__MSG_actionName__",
+      "default_icon": "icons/icon-19.png",
+      "default_popup": "popup.html"
+   },
+   "description": "__MSG_extDescription__",
+   "icons": {
+      "16": "icons/icon-512.png",
+	  "19": "icons/icon-19.png",
+	  "38": "icons/icon-38.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png",
+      "512": "icons/icon-512.png"
+	  
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCkAp45SSbqnybIcorH82vNnrqftfCAp+sAX9Dn1jwOsyw1mMmA7fomoPy5q7FoVi6KMTZgtwAmMghgbkcQ+GdkX0xhq2ubkoN7mEZQ0vWp+GHzUZZOB8xBXJQ5lwt83NReUik0FbmsRyrBysmxlEKZBb3cvJv9G4XhkHs9V0xW1QIDAQAB",
+   "name": "__MSG_extName__",
+   "default_locale": "en_US",
+   "manifest_version": 2,
+   "content_security_policy": "default-src 'self'; script-src 'self'; object-src 'self'; style-src http://fonts.googleapis.com/ 'unsafe-inline' 'unsafe-eval' 'self'; img-src 'self'; font-src http://themes.googleusercontent.com/ 'self'",
+   "options_page": "options.html",
+   "permissions": [ "tabs", "http://*/*", "https://*/*", "fontSettings" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "3.0.0"
+}

@@ -1,0 +1,106 @@
+{
+	"extName": {
+		"description": "Global Extension Name, used by manifest.json and most of the pages in jsInjector",
+		"message": "jsInjector"
+	},
+	"actionName": {
+		"description": "The name used for the Browser Action",
+		"message": "jsInjector"
+	},
+	"extDescription": {
+		"description": "The description used on the Chrome Extensions page",
+		"message": "Save and inject JavaScript into any web page"
+	},
+	"subtitle": {
+		"description": "Extension Subtitle",
+		"message": "Original By Nicholas Workshop; Updates By Reap3r119"
+	},
+	"introText": {
+		"description": "Options page intro text",
+		"message": "JsInjector is the updated version of the old Workshop project Javascript Injector."
+	},
+	"featText": {
+		"description": "Options page features list intro text",
+		"message": "Features List:"
+	},
+	"featureA": {
+		"description": "Feature One text",
+		"message": "Updated jQuery & LESS libraries"
+	},
+	"featureB": {
+		"description": "Feature Two text",
+		"message": "Improved UI"
+	},
+	"featureC": {
+		"description": "Feature Three text",
+		"message": "Updated to Chrome Manifest version 2"
+	},
+	"featureD": {
+		"description": "Feature Four text",
+		"message": "Experimental CSS injection"
+	},
+	"featureE": {
+		"description": "Feature Five text",
+		"message": "Experimental parameter-less injection"
+	},
+	"urlLbl": {
+		"description": "URL Label",
+		"message": "URL"
+	},
+	"descLbl": {
+		"description": "Description Label",
+		"message": "Description"
+	},
+	"scriptLbl": {
+		"description": "Script Label",
+		"message": "Script"
+	},
+	"styleLbl": {
+		"description": "Style Label",
+		"message": "CSS Text"
+	},
+	"autRunLbl": {
+		"description": "Autorun Label",
+		"message": "Autorun"
+	},
+	"jQueryLbl": {
+		"description": "jQuery Label",
+		"message": "jQuery"
+	},
+	"RegExLbl": {
+		"description": "Regular Expressions Label",
+		"message": "RegEx"
+	},
+	"autStyLbl": {
+		"description": "Auto-Style Label",
+		"message": "Auto-Style"
+	},
+	"injectLbl": {
+		"description": "Inject Label",
+		"message": "Inject"
+	},
+	"saveLbl": {
+		"description": "Save Label",
+		"message": "Save"
+	},
+	"delLbl": {
+		"description": "Delete Label",
+		"message": "Delete"
+	},
+	"emptyDb": {
+		"description": "Empty Database Message",
+		"message": "The database is empty, click \"Add New\" to create a new script."
+	},
+	"unsaved": {
+		"description": "Unsaved Message",
+		"message": "Unsaved"
+	},
+	"addLbl": {
+		"description": "Add New Entry Label",
+		"message": "Add New"
+	},
+	"delAllLbl": {
+		"description": "Delete All Entries Label",
+		"message": "Delete All"
+	}
+}
