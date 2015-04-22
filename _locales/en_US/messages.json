@@ -1,7 +1,11 @@
 {
 	"extName": {
-		"description": "Global Extension Name, used by manifest.json and most of the pages in jsInjector",
+		"description": "Global Extension Name, used by manifest.json",
 		"message": "jsInjector"
+	},
+	"extTitle": {
+		"description": "The title used on the settings and popup pages",
+		"message": "JavaScript Injector"
 	},
 	"actionName": {
 		"description": "The name used for the Browser Action",
@@ -11,9 +15,13 @@
 		"description": "The description used on the Chrome Extensions page",
 		"message": "Save and inject JavaScript into any web page"
 	},
-	"subtitle": {
+	"subtitle1": {
 		"description": "Extension Subtitle",
-		"message": "Original By Nicholas Workshop; Updates By Reap3r119"
+		"message": "Original By Nicholas Workshop"
+	},
+	"subtitle2": {
+		"description": "Extension Subtitle",
+		"message": "Rebuild By Nick Richardson"
 	},
 	"introText": {
 		"description": "Options page intro text",
@@ -37,53 +45,53 @@
 	},
 	"featureD": {
 		"description": "Feature Four text",
-		"message": "Experimental CSS injection"
+		"message": "CSS injection"
 	},
 	"featureE": {
 		"description": "Feature Five text",
-		"message": "Experimental parameter-less injection"
+		"message": "Experimental Import/Export Features"
 	},
-	"urlLbl": {
+	"url": {
 		"description": "URL Label",
 		"message": "URL"
 	},
-	"descLbl": {
+	"desc": {
 		"description": "Description Label",
 		"message": "Description"
 	},
-	"scriptLbl": {
+	"script": {
 		"description": "Script Label",
 		"message": "Script"
 	},
-	"styleLbl": {
+	"style": {
 		"description": "Style Label",
 		"message": "CSS Text"
 	},
-	"autRunLbl": {
+	"autorun": {
 		"description": "Autorun Label",
 		"message": "Autorun"
 	},
-	"jQueryLbl": {
+	"jQuery": {
 		"description": "jQuery Label",
 		"message": "jQuery"
 	},
-	"RegExLbl": {
+	"RegEx": {
 		"description": "Regular Expressions Label",
 		"message": "RegEx"
 	},
-	"autStyLbl": {
+	"autostyle": {
 		"description": "Auto-Style Label",
 		"message": "Auto-Style"
 	},
-	"injectLbl": {
+	"inject": {
 		"description": "Inject Label",
 		"message": "Inject"
 	},
-	"saveLbl": {
+	"save": {
 		"description": "Save Label",
 		"message": "Save"
 	},
-	"delLbl": {
+	"delete": {
 		"description": "Delete Label",
 		"message": "Delete"
 	},
@@ -95,12 +103,28 @@
 		"description": "Unsaved Message",
 		"message": "Unsaved"
 	},
-	"addLbl": {
+	"add": {
 		"description": "Add New Entry Label",
 		"message": "Add New"
 	},
-	"delAllLbl": {
+	"delAll": {
 		"description": "Delete All Entries Label",
 		"message": "Delete All"
+	},
+	"import": {
+		"description": "Import Label",
+		"message": "Import"
+	},
+	"importWarning": {
+		"description": "Warning For Import Box",
+		"message": "Current Database Will Be Erased"
+	},
+	"export": {
+		"description": "Export Label",
+		"message": "Export"
+	},
+	"debugText": {
+		"description": "Debug Mode text",
+		"message": "DEBUG MODE"
 	}
 }

@@ -18,7 +18,7 @@ injector.injectCSS = function(tabId, code) {
 }
 
 injector.injectJQuery = function(tabId, callback) {
-    chrome.tabs.executeScript(tabId, {file:"inc/jquery-2.1.0.min.js"}, function() {
+    chrome.tabs.executeScript(tabId, {file:"inc/jquery-2.1.3.min.js"}, function() {
         console.log("jQuery injected.");
 		callback();
     });

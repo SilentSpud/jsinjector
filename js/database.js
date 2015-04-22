@@ -81,6 +81,24 @@ database.getAllScripts = function(callback) {
 	});
 }
 
+database.logAllScripts = function() {
+	database.db.transaction(function(tx) {
+		tx.executeSql("SELECT * FROM Scripts", 
+					  [], 
+					  function(tx, rs) { console.log(rs.rows) },
+					  database.onError);
+	});
+}
+
+database.dlAllScripts = function(callback) {
+	database.db.transaction(function(tx) {
+		tx.executeSql("SELECT * FROM Scripts", 
+					  [], 
+					  function(tx, rs) { callback(JSON.stringify(rs.rows)) },
+					  database.onError);
+	});
+}
+
 database.deleteScript = function(id) {
 	database.db.transaction(function(tx){
 		tx.executeSql("DELETE FROM Scripts WHERE id=?", 
@@ -98,6 +116,21 @@ database.getMatchedScript = function(url, callback) {
 				callback(rows.item(i));
 				break; // Get only the first one
 			}
+		}
+	});
+}
+
+database.logMatchedScript = function(url) {
+	database.getAllScripts(function(rows) {
+		for (var i=0; i<rows.length; i++) {
+			success=false;
+			if ((rows.item(i).regex=="true" && url.match(rows.item(i).url)) || (rows.item(i).regex=="false" && url==rows.item(i).url)) {
+			//if (url.match(rows.item(i).url)) {
+				console.log(rows.item(i));
+				success=true;
+				break; // Get only the first one
+			}
+			console.log(success);
 		}
 	});
 }

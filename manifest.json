@@ -21,7 +21,7 @@
    "name": "__MSG_extName__",
    "default_locale": "en_US",
    "manifest_version": 2,
-   "content_security_policy": "default-src 'self'; script-src 'self'; object-src 'self'; style-src http://fonts.googleapis.com/ 'unsafe-inline' 'unsafe-eval' 'self'; img-src 'self'; font-src http://themes.googleusercontent.com/ 'self'",
+   "content_security_policy": "default-src 'self'; script-src 'self'; object-src 'self'; style-src http://fonts.googleapis.com/ 'unsafe-inline' 'unsafe-eval' 'self'; img-src 'self'; font-src http://fonts.gstatic.com/ 'self'",
    "options_page": "options.html",
    "permissions": [ "tabs", "http://*/*", "https://*/*", "fontSettings" ],
    "update_url": "http://clients2.google.com/service/update2/crx",

@@ -1,9 +1,9 @@
 <html><head>
 <title></title>
 <link rel="stylesheet" type="text/less" href="options.less">
-<link rel="stylesheet" type="text/css" href="grid/960.css">
-<script type="text/javascript" src="js/less-1.6.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="960.min.css">
+<script type="text/javascript" src="js/less-2.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript" src="js/options.js" defer></script>
 <script type="text/javascript" src="js/strings.js" defer></script>
 </style>
@@ -26,11 +26,11 @@
 		</div>
 		<div class="script">
 			<label class="hasome"></label>
-			<textarea>alert('Example Script Injected!');</textarea>
+			<textarea></textarea>
 		</div>
 		<div class="style">
 			<label class="hasome"></label>
-			<textarea>body {background-color: #F00 !important; }</textarea>
+			<textarea></textarea>
 		</div>
 	</div>
 	<div class="action">
@@ -42,19 +42,19 @@
 		</div>
 		<div class="autorun">
 			<label></label>
-			<input type="checkbox"/>
+			<input type="checkbox" checked/>
 		</div>
 		<div class="jquery">
 			<label></label>
-			<input type="checkbox"/>
+			<input type="checkbox" checked/>
 		</div>
 		<div class="regex">
 			<label></label>
-			<input type="checkbox" />
+			<input type="checkbox"/>
 		</div>
 		<div class="autostyle">
 			<label></label>
-			<input type="checkbox" />
+			<input type="checkbox" checked/>
 		</div>
 	</div>
 
@@ -65,7 +65,8 @@
 
 	<div id="header" class="grid_3 suffix_2">
 		<div class="title"></div>
-		<div class="subtitle"></div>
+		<div class="subtitle1"></div>
+		<div class="subtitle2"></div>
 		<div class="description">
 			<p class="intro"></p>
 			<p class="feat"></p>
@@ -81,6 +82,12 @@
 			<label></label>
 		</div>
 		<div class="delete-all">
+			<label></label>
+		</div>
+		<div class="import">
+			<label></label>
+		</div>
+		<div class="export">
 			<label></label>
 		</div>
 	</div>
