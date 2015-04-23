@@ -11,7 +11,6 @@ if (localStorage['debug']=="false") {
 	replace($("ul.feat_list>li")[1],"featureB");
 	replace($("ul.feat_list>li")[2],"featureC");
 	replace($("ul.feat_list>li")[3],"featureD");
-	replace($("ul.feat_list>li")[4],"featureE");
 }
 replace($("div.url>label")[0],"url");
 replace($("div.description>label")[0],"desc");

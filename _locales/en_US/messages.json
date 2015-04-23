@@ -33,23 +33,19 @@
 	},
 	"featureA": {
 		"description": "Feature One text",
-		"message": "Updated jQuery & LESS libraries"
+		"message": "JavaScript injection & auto-injection"
 	},
 	"featureB": {
 		"description": "Feature Two text",
-		"message": "Improved UI"
+		"message": "jQuery injection"
 	},
 	"featureC": {
 		"description": "Feature Three text",
-		"message": "Updated to Chrome Manifest version 2"
+		"message": "CSS injection & auto-injection"
 	},
 	"featureD": {
 		"description": "Feature Four text",
-		"message": "CSS injection"
-	},
-	"featureE": {
-		"description": "Feature Five text",
-		"message": "Experimental Import/Export Features"
+		"message": "Import/Export Data"
 	},
 	"url": {
 		"description": "URL Label",
@@ -115,13 +111,21 @@
 		"description": "Import Label",
 		"message": "Import"
 	},
+	"importMsg": {
+		"description": "Import Message",
+		"message": "Import From Clipboard?"
+	},
 	"importWarning": {
-		"description": "Warning For Import Box",
+		"description": "Import Warning",
 		"message": "Current Database Will Be Erased"
 	},
 	"export": {
 		"description": "Export Label",
 		"message": "Export"
+	},
+	"exportMsg": {
+		"description": "Export Message",
+		"message": "Data copied to Clipboard"
 	},
 	"debugText": {
 		"description": "Debug Mode text",

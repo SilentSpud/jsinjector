@@ -94,9 +94,9 @@ function deleteRecord() {
 }
 
 $("div.import").click(function() {
-	idata=window.prompt(chrome.i18n.getMessage("import")+" ("+chrome.i18n.getMessage("importWarning")+"):");
-	if (idata!=null&&idata!="") {
-		idata=JSON.parse(itext);
+	conf=window.confirm(chrome.i18n.getMessage("importMsg")+" ("+chrome.i18n.getMessage("importWarning")+")");
+	if (conf==true) {
+		idata=JSON.parse(background.cb.paste());
 		$("div.row:not(.template)").slideUp('fast', function() { 
 			$(this).remove();
 			$("#content").trigger('change');
@@ -107,7 +107,10 @@ $("div.import").click(function() {
 });
 
 $("div.export").click(function() {
-	background.database.dlAllScripts(function(data) {window.prompt(chrome.i18n.getMessage("export")+":",data);})
+	background.database.dlAllScripts(function(data) {
+		background.cb.copy(data);
+		window.alert(chrome.i18n.getMessage("exportMsg"));
+	});
 });
 
 if (localStorage['debug']=="true") {
