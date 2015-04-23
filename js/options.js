@@ -31,7 +31,7 @@ function load() {
 load();
 
 $("#content").change(function(e) {
-	if ($(".row").length<=1) {
+	if ($(".row").length<=2) {
 		$("#content").addClass("empty");
 	}
 	else {
@@ -41,15 +41,15 @@ $("#content").change(function(e) {
 
 $("div.add").click(function() {
 	var element = $("div.row.template").clone().removeClass("template");
-    	background.database.addScript(
-			"http://example.com/", 
-			"Example", 
-			"document.write('Example');", 
-			"body {display: none; }", 
-			true, 
-			true, 
-			false,
-			true
+	background.database.addScript(
+		"http://example.com/", 
+		"Example", 
+		"document.write('Example');", 
+		"body {display: none; }", 
+		true, 
+		true, 
+		false,
+		true
 	);
 	background.database.getLastInsertId(function(id) { element.attr("data-id",id) });
 	element.find("div.save").click(updateRecord);
@@ -94,22 +94,26 @@ function deleteRecord() {
 }
 
 $("div.import").click(function() {
+	if ($("div.row:not(.template):not(#import-box)")!=[]) {
+		$("div.row:not(.template):not(#import-box)").slideUp('slow',function() {$("#import-box").slideDown('slow');});
+	} else {
+		$("#import-box").slideDown('slow');
+	};
+});
+
+$("#import-data").change(function() {
 	conf=window.confirm(chrome.i18n.getMessage("importMsg")+" ("+chrome.i18n.getMessage("importWarning")+")");
 	if (conf==true) {
-		idata=JSON.parse(background.cb.paste());
-		$("div.row:not(.template)").slideUp('fast', function() { 
-			$(this).remove();
-			$("#content").trigger('change');
+		background.read($("#import-data")[0].files[0],function(data){
+			background.import_db(JSON.parse(data))
 		});
-		background.import_db(idata);
-		load();
 	}
+	$("#import-box").slideUp('slow',function() {load();});
 });
 
 $("div.export").click(function() {
 	background.database.dlAllScripts(function(data) {
-		background.cb.copy(data);
-		window.alert(chrome.i18n.getMessage("exportMsg"));
+		window.location = "data:document/text;filename=jsinjector.json," + encodeURI(data);
 	});
 });
 

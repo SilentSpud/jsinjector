@@ -45,7 +45,7 @@
 	},
 	"featureD": {
 		"description": "Feature Four text",
-		"message": "Import/Export Data"
+		"message": "File-Based Import/Export Data"
 	},
 	"url": {
 		"description": "URL Label",

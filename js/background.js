@@ -46,26 +46,15 @@ function import_db(data) {
 		);
 	}
 }
-cb={}
-cb.copy=function(data) {
-	d=document.createElement('div');
-	d.contentEditable=true;
-	document.body.appendChild(d);
-	d.innerHTML=data;
-	d.unselectable="off";
-	d.focus();
-	document.execCommand('SelectAll');
-	document.execCommand("Copy", false, null);
-	document.body.removeChild(d);
-}
 
-cb.paste=function() {
-	d=document.createElement('div');
-	d.contentEditable=true;
-	document.body.appendChild(d);
-	d.unselectable="off";
-	d.focus();
-	document.execCommand("Paste", false, null);
-	return d.innerText;
-	document.body.removeChild(d);
+function read(file,callback) {
+	r=new FileReader();
+	r.onload = function(e) {
+		callback(e.target.result);
+	};
+	r.onerror = function(stuff) {
+		console.log("error", stuff);
+		console.log (stuff.getMessage());
+	};
+	r.readAsText(file);
 }
