@@ -22,6 +22,7 @@ chrome.windows.getCurrent(function(window) {
 			$("div.jquery>input")[0].checked=(data.jquery=="true")?true:false;
 			$("div.regex>input")[0].checked=(data.regex=="true")?true:false;
 			$("div.autostyle>input")[0].checked=(data.autostyle=="true")?true:false;
+			$("div.less>input")[0].checked=(data.autostyle=="true")?true:false;
 		}); 
 	});
 });
@@ -29,35 +30,49 @@ chrome.windows.getCurrent(function(window) {
 $("div.inject").click(function() {
 	chrome.windows.getCurrent(function(window) {
 		chrome.tabs.getSelected(window.id, function(tab){
-			if ($("div.jquery>input").checked=="true") background.injector.injectJQuery(tab.id);
-			if ($("div.script>textarea").val()!='') background.injector.injectScript(tab.id, $("div.script>textarea").val());
-			if ($("div.style>textarea").val()!='') background.injector.injectCSS(tab.id, $("div.style>textarea").val());
+			if ($("div.jquery>input").checked=="true") {
+				background.injector.injectJQuery(tab.id);
+			}
+			if ($("div.script>textarea").val()!='') {
+				background.injector.injectScript(tab.id, $("div.script>textarea").val());
+			}
+			if ($("div.style>textarea").val()!='') {
+				if ($("div.less>input").checked=="true") {
+					background.injector.injectLESS(tab.id, $("div.style>textarea").val());
+				} else {
+					background.injector.injectCSS(tab.id, $("div.style>textarea").val());
+				}
+			}
 		});
 	});
 	if (saved && ($("div.script>textarea").val()!='' || $("div.style>textarea").val()!='')) {
 		background.database.updateScript(savedId,
-										 $("div.url>input").val(), 
-										 $("div.description>input").val(), 
-										 $("div.script>textarea").val(), 
-										 $("div.style>textarea").val(), 
-										 $("div.autorun>input")[0].checked?true:false, 
-										 $("div.jquery>input")[0].checked?true:false, 
-										 $("div.regex>input")[0].checked?true:false, 
-										 $("div.autostyle>input")[0].checked?true:false
+			$("div.url>input").val(), 
+			$("div.description>input").val(), 
+			$("div.script>textarea").val(), 
+			$("div.style>textarea").val(), 
+			$("div.autorun>input")[0].checked?true:false, 
+			$("div.jquery>input")[0].checked?true:false, 
+			$("div.regex>input")[0].checked?true:false, 
+			$("div.autostyle>input")[0].checked?true:false, 
+			$("div.less>input")[0].checked?true:false
 		);
 	}
 	else if ($("div.script>textarea").val()!='' || $("div.style>textarea").val()!='') {
 		background.database.addScript($("div.url>input").val(), 
-									  $("div.description>input").val(), 
-									  $("div.script>textarea").val(), 
-									  $("div.style>textarea").val(), 
-									  $("div.autorun>input")[0].checked?true:false, 
-									  $("div.jquery>input")[0].checked?true:false, 
-									  $("div.regex>input")[0].checked?true:false, 
-									  $("div.autostyle>input")[0].checked?true:false
+			$("div.description>input").val(), 
+			$("div.script>textarea").val(), 
+			$("div.style>textarea").val(), 
+			$("div.autorun>input")[0].checked?true:false, 
+			$("div.jquery>input")[0].checked?true:false, 
+			$("div.regex>input")[0].checked?true:false, 
+			$("div.autostyle>input")[0].checked?true:false, 
+			$("div.less>input")[0].checked?true:false
 		);
 		database.getLastInsertId(function(id) { savedId = id });
 		saved = true;
 	}
-	else chrome.error("Empty Inject. Entry deleted, injection cancelled.");
+	else {
+		chrome.error("Empty Inject. Entry deleted, injection cancelled.");
+	}
 });

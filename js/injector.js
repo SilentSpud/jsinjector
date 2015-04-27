@@ -4,22 +4,30 @@ var i=0;
 // Javascript Injector
 injector.injectScript = function(tabId, code) {
     chrome.tabs.executeScript(tabId, {code:code}, function() {
-        //console.log("Script injected: "+code.substr(0,20).replace("\n"," "));
 		console.log("Script injected: \n" + code);
     });
 }
 
-// Experimental CSS Injector
+// jQuery Injector
+injector.injectJQuery = function(tabId, callback) {
+    chrome.tabs.executeScript(tabId, {file:"js/jquery-2.1.3.min.js"}, function() {
+        console.log("jQuery injected.");
+		callback();
+    });
+}
+
+// CSS Injector
 injector.injectCSS = function(tabId, code) {
     chrome.tabs.insertCSS(tabId, {code:code}, function() {
-        //console.log("Script injected: "+code.substr(0,20).replace("\n"," "));
 		console.log("CSS injected: \n" + code);
     });
 }
 
-injector.injectJQuery = function(tabId, callback) {
-    chrome.tabs.executeScript(tabId, {file:"inc/jquery-2.1.3.min.js"}, function() {
-        console.log("jQuery injected.");
-		callback();
-    });
+// LESS Injector
+injector.injectCSS = function(tabId, code) {
+	less.render(code, function (e, output) {
+		chrome.tabs.insertCSS(tabId, {code:output.css}, function() {
+			console.log("LESS injected: \n" + code);
+		});
+	});
 }

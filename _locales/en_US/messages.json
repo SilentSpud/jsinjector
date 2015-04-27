@@ -41,7 +41,7 @@
 	},
 	"featureC": {
 		"description": "Feature Three text",
-		"message": "CSS injection & auto-injection"
+		"message": "CSS/LESS injection & auto-injection"
 	},
 	"featureD": {
 		"description": "Feature Four text",
@@ -79,6 +79,10 @@
 		"description": "Auto-Style Label",
 		"message": "Auto-Style"
 	},
+	"less": {
+		"description": "LESS Styling Label",
+		"message": "LESS"
+	},
 	"inject": {
 		"description": "Inject Label",
 		"message": "Inject"
@@ -111,6 +115,10 @@
 		"description": "Import Label",
 		"message": "Import"
 	},
+	"export": {
+		"description": "Export Label",
+		"message": "Export"
+	},
 	"importMsg": {
 		"description": "Import Message",
 		"message": "Import From Clipboard?"
@@ -119,13 +127,13 @@
 		"description": "Import Warning",
 		"message": "Current Database Will Be Erased"
 	},
-	"export": {
-		"description": "Export Label",
-		"message": "Export"
-	},
 	"exportMsg": {
 		"description": "Export Message",
 		"message": "Data copied to Clipboard"
+	},
+	"invalidVersion": {
+		"description": "Message for Importing Incorrect Version Data",
+		"message": "Import data version incompatible"
 	},
 	"debugText": {
 		"description": "Debug Mode text",

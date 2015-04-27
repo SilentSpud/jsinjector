@@ -20,6 +20,7 @@ replace($("div.autorun>label")[0],"autorun");
 replace($("div.jquery>label")[0],"jQuery");
 replace($("div.regex>label")[0],"RegEx");
 replace($("div.autostyle>label")[0],"autostyle");
+replace($("div.less>label")[0],"less");
 replace($("div.inject>label")[0],"inject");
 replace($("div.save>label")[0],"save");
 replace($("div.delete>label")[0],"delete");

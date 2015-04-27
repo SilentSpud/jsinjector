@@ -1,12 +1,13 @@
 var database = {};
+var manifest = chrome.runtime.getManifest();
 
 database.db = null;
 
 database.open = function() {
 	database.db = openDatabase("JsInjector", 
-							   "1.0", 
-							   "JsInjector Database", 
-							   10 * 1024 * 1024); // 10MB
+		"1.0", 
+		"JsInjector Database", 
+		10 * 1024); // 10KB
 }
 
 database.createTable = function() {
@@ -20,7 +21,8 @@ database.createTable = function() {
 					  "autorun BOOLEAN, " + 
 					  "jquery BOOLEAN, " +
 					  "regex BOOLEAN, " +
-					  "autostyle BOOLEAN)",
+					  "autostyle BOOLEAN," +
+					  "less BOOLEAN)",
 					  []);
 	});
 }
@@ -31,80 +33,83 @@ database.dropTable = function() {
 	});
 }
 
-database.addScript = function(url, description, script, style, autorun, jquery, regex, autostyle) {
+database.addScript = function(url, description, script, style, autorun, jquery, regex, autostyle, less) {
 	database.db.transaction(function(tx){
 		tx.executeSql("INSERT INTO Scripts " +
-					  "(url, description, script, style, autorun, jquery, regex, autostyle) " +
-					  "VALUES (?,?,?,?,?,?,?,?)",
-					  [url, description, script, style, autorun, jquery, regex, autostyle],
-					  database.onSuccess,
-					  database.onError);
+			"(url, description, script, style, autorun, jquery, regex, autostyle, less) " +
+			"VALUES (?,?,?,?,?,?,?,?,?)",
+			[url, description, script, style, autorun, jquery, regex, autostyle, less],
+			database.onSuccess,
+			database.onError);
 	});
 }
 
 database.getLastInsertId = function(callback) {
 	database.db.transaction(function(tx) {
 		tx.executeSql("SELECT MAX(id) AS id FROM Scripts", 
-					  [], 
-					  function(tx, rs) { 
-						  callback(rs.rows.item(0).id); 
-						  console.log(rs.rows.item(0).id);
-					  },
-					  database.onError);
+		[], 
+		function(tx, rs) { 
+			callback(rs.rows.item(0).id); 
+			console.log(rs.rows.item(0).id);
+		},
+		database.onError);
 	});
 }
 
-database.updateScript = function(id, url, description, script, style, autorun, jquery, regex, autostyle) {
+database.updateScript = function(id, url, description, script, style, autorun, jquery, regex, autostyle, less) {
 	database.db.transaction(function(tx){
 		tx.executeSql("UPDATE Scripts SET " + 
-					  "url = ?, " +
-					  "description = ?, " +
-					  "script = ?, " +
-					  "style = ?, " +
-					  "autorun = ?, " +
-					  "jquery = ?, " +
-					  "regex = ?, " + 
-					  "autostyle = ? " +
-					  "WHERE id = ?",
-					  [url, description, script, style, autorun, jquery, regex, autostyle, id],
-					  database.onSuccess,
-					  database.onError);
+			"url = ?, " +
+			"description = ?, " +
+			"script = ?, " +
+			"style = ?, " +
+			"autorun = ?, " +
+			"jquery = ?, " +
+			"regex = ?, " + 
+			"autostyle = ?, " + 
+			"less = ? " +
+			"WHERE id = ?",
+			[url, description, script, style, autorun, jquery, regex, autostyle, less, id],
+			database.onSuccess,
+			database.onError);
 	});
 }
 
 database.getAllScripts = function(callback) {
 	database.db.transaction(function(tx) {
 		tx.executeSql("SELECT * FROM Scripts", 
-					  [], 
-					  function(tx, rs) { callback(rs.rows) },
-					  database.onError);
+			[], 
+			function(tx, rs) { callback(rs.rows) },
+			database.onError);
 	});
 }
 
 database.logAllScripts = function() {
 	database.db.transaction(function(tx) {
 		tx.executeSql("SELECT * FROM Scripts", 
-					  [], 
-					  function(tx, rs) { console.log(rs.rows) },
-					  database.onError);
+			[], 
+			function(tx, rs) { console.log(rs.rows) },
+			database.onError);
 	});
 }
 
 database.dlAllScripts = function(callback) {
 	database.db.transaction(function(tx) {
 		tx.executeSql("SELECT * FROM Scripts", 
-					  [], 
-					  function(tx, rs) { callback(JSON.stringify(rs.rows)) },
-					  database.onError);
+			[], 
+			function(tx, rs) {
+				rs.rows.version=manifest.version;
+				callback(JSON.stringify(rs.rows)) },
+			database.onError);
 	});
 }
 
 database.deleteScript = function(id) {
 	database.db.transaction(function(tx){
 		tx.executeSql("DELETE FROM Scripts WHERE id=?", 
-					  [id],
-					  database.onSuccess,
-					  database.onError);
+			[id],
+			database.onSuccess,
+			database.onError);
 	});
 }
 

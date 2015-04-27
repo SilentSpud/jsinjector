@@ -22,6 +22,7 @@ function load() {
 			element.find("div.jquery>input")[0].checked=(data.jquery=="true")?true:false;
 			element.find("div.regex>input")[0].checked=(data.regex=="true")?true:false;
 			element.find("div.autostyle>input")[0].checked=(data.autostyle=="true")?true:false;
+			element.find("div.less>input")[0].checked=(data.autostyle=="true")?true:false;
 			$("#content").append(element);
 		}
 		$("#content").trigger('change');
@@ -31,7 +32,7 @@ function load() {
 load();
 
 $("#content").change(function(e) {
-	if ($(".row").length<=2) {
+	if ($(".row").length<3) {
 		$("#content").addClass("empty");
 	}
 	else {
@@ -49,7 +50,8 @@ $("div.add").click(function() {
 		true, 
 		true, 
 		false,
-		true
+		true,
+		false
 	);
 	background.database.getLastInsertId(function(id) { element.attr("data-id",id) });
 	element.find("div.save").click(updateRecord);
@@ -63,7 +65,7 @@ $("div.add").click(function() {
 $("div.delete-all").click(function() {
 	background.database.dropTable();
 	background.database.createTable();
-	$("div.row:not(.template)").slideUp('slow', function() { 
+	$("div.row:not(.template):not(#import-box)").slideUp('slow', function() { 
 		$(this).remove();
 		$("#content").trigger('change');
 	});
@@ -80,7 +82,8 @@ function updateRecord() {
 		element.find("div.autorun>input")[0].checked, 
 		element.find("div.jquery>input")[0].checked,
 		element.find("div.regex>input")[0].checked,
-		element.find("div.autostyle>input")[0].checked
+		element.find("div.autostyle>input")[0].checked,
+		element.find("div.less>input")[0].checked
 	);
 }
 
@@ -94,7 +97,7 @@ function deleteRecord() {
 }
 
 $("div.import").click(function() {
-	if ($("div.row:not(.template):not(#import-box)")!=[]) {
+	if ($("div.row:not(.template):not(#import-box)").length!=0) {
 		$("div.row:not(.template):not(#import-box)").slideUp('slow',function() {$("#import-box").slideDown('slow');});
 	} else {
 		$("#import-box").slideDown('slow');
@@ -104,8 +107,13 @@ $("div.import").click(function() {
 $("#import-data").change(function() {
 	conf=window.confirm(chrome.i18n.getMessage("importMsg")+" ("+chrome.i18n.getMessage("importWarning")+")");
 	if (conf==true) {
-		background.read($("#import-data")[0].files[0],function(data){
-			background.import_db(JSON.parse(data))
+		background.read($("#import-data")[0].files[0],function(rawdata){
+			data=JSON.parse(rawdata);
+			if (data.version==background.manifest.version) {
+				background.import_db(data)
+			} else {
+				window.alert(chrome.i18n.getMessage("invalidVersion"));
+			}
 		});
 	}
 	$("#import-box").slideUp('slow',function() {load();});
