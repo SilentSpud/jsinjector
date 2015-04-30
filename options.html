@@ -11,9 +11,6 @@
 
 <body class="container_16">
 <div id="content" class="grid_9 prefix_2">
-<div class="row" id="import-box" style="display: none;">
-	<input type="file" id="import-data">
-</div>
 <div class="empty-msg"></div>
 
 <div class="row template">
@@ -96,4 +93,8 @@
 		<label></label>
 	</div>
 </div>
+<!-- Chrome renames exported json file, so accept attribute doesn't work
+<input type="file" id="import-data" accept="application/json,text/plain" style="display: none">
+-->
+<input type="file" id="import-data" style="display: none">
 </body></html>

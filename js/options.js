@@ -32,7 +32,7 @@ function load() {
 load();
 
 $("#content").change(function(e) {
-	if ($(".row").length<3) {
+	if ($(".row").length<2) {
 		$("#content").addClass("empty");
 	}
 	else {
@@ -63,12 +63,15 @@ $("div.add").click(function() {
 });
 
 $("div.delete-all").click(function() {
-	background.database.dropTable();
-	background.database.createTable();
-	$("div.row:not(.template):not(#import-box)").slideUp('slow', function() { 
-		$(this).remove();
-		$("#content").trigger('change');
-	});
+	var conf=window.confirm(chrome.i18n.getMessage("delAllWarning"));
+	if (conf==true) {
+		background.database.dropTable();
+		background.database.createTable();
+		$("div.row:not(.template):not(#import-box)").slideUp('slow', function() { 
+			$(this).remove();
+			$("#content").trigger('change');
+		});
+	}
 });
 
 function updateRecord() {
@@ -97,26 +100,40 @@ function deleteRecord() {
 }
 
 $("div.import").click(function() {
-	if ($("div.row:not(.template):not(#import-box)").length!=0) {
-		$("div.row:not(.template):not(#import-box)").slideUp('slow',function() {$("#import-box").slideDown('slow');});
-	} else {
-		$("#import-box").slideDown('slow');
-	};
+	$("#import-data")[0].click();
 });
 
 $("#import-data").change(function() {
-	conf=window.confirm(chrome.i18n.getMessage("importMsg")+" ("+chrome.i18n.getMessage("importWarning")+")");
+	var conf=window.confirm(chrome.i18n.getMessage("importWarning"));
 	if (conf==true) {
-		background.read($("#import-data")[0].files[0],function(rawdata){
-			data=JSON.parse(rawdata);
-			if (data.version==background.manifest.version) {
-				background.import_db(data)
-			} else {
-				window.alert(chrome.i18n.getMessage("invalidVersion"));
-			}
-		});
+		if ($("div.row:not(.template):not(#import-box)").length!=0) {
+			$("div.row:not(.template):not(#import-box)").slideUp('slow',function() {
+				$(this).remove();
+				$("#content").trigger('change');
+				background.read($("#import-data")[0].files[0],function(rawdata) {
+					var data=JSON.parse(rawdata);
+					if (data.version==background.manifest.version) {
+						background.import_db(data,function() {
+							load();
+						});
+					} else {
+						window.alert(chrome.i18n.getMessage("invalidVersion"));
+					}
+				});
+			});
+		} else {
+			background.read($("#import-data")[0].files[0],"",function(rawdata) {
+				var data=JSON.parse(rawdata);
+				if (data.version==background.manifest.version) {
+					background.import_db(data,function() {
+						load();
+					});
+				} else {
+					window.alert(chrome.i18n.getMessage("invalidVersion"));
+				}
+			});
+		}
 	}
-	$("#import-box").slideUp('slow',function() {load();});
 });
 
 $("div.export").click(function() {

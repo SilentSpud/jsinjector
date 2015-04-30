@@ -111,6 +111,10 @@
 		"description": "Delete All Entries Label",
 		"message": "Delete All"
 	},
+	"delAllConf": {
+		"description": "Delete All Entries Confirmation",
+		"message": "Delete All Injector Entries?"
+	},
 	"import": {
 		"description": "Import Label",
 		"message": "Import"
@@ -119,17 +123,9 @@
 		"description": "Export Label",
 		"message": "Export"
 	},
-	"importMsg": {
-		"description": "Import Message",
-		"message": "Import From Clipboard?"
-	},
 	"importWarning": {
 		"description": "Import Warning",
-		"message": "Current Database Will Be Erased"
-	},
-	"exportMsg": {
-		"description": "Export Message",
-		"message": "Data copied to Clipboard"
+		"message": "Import From File? (Current Database Will Be Erased)"
 	},
 	"invalidVersion": {
 		"description": "Message for Importing Incorrect Version Data",

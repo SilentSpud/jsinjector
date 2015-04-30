@@ -41,24 +41,23 @@ chrome.tabs.onUpdated.addListener(function(tabId, info, tab) {
 	}
 });
 
-function import_db(data) {
-	if (data.version==manifest.version) {
-		database.dropTable();
-		database.createTable();
-		for (i=0;i<data.length;i++) {
-			database.addScript(
-				data[i].url, 
-				data[i].description, 
-				data[i].script, 
-				data[i].style, 
-				data[i].autorun, 
-				data[i].jquery, 
-				data[i].regex,
-				data[i].autostyle,
-				data[i].less
-			);
-		}
+function import_db(data,callback) {
+	database.dropTable();
+	database.createTable();
+	for (i=0;i<data.length;i++) {
+		database.addScript(
+			data[i].url, 
+			data[i].description, 
+			data[i].script, 
+			data[i].style, 
+			data[i].autorun, 
+			data[i].jquery, 
+			data[i].regex,
+			data[i].autostyle,
+			data[i].less
+		);
 	}
+	callback();
 }
 
 function read(file,callback) {
