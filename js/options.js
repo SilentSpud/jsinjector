@@ -141,10 +141,3 @@ $("div.export").click(function() {
 		window.location = "data:document/text;filename=jsinjector.json," + encodeURI(data);
 	});
 });
-
-if (localStorage['debug']=="true") {
-	document.title=chrome.i18n.getMessage("extName")+" - "+chrome.i18n.getMessage("debugText");
-	$("p.intro")[0].className="intro debug";
-	$("p.debug")[0].innerHTML=chrome.i18n.getMessage("debugText");
-	$(".feat_list")[0].style.display="none";
-}

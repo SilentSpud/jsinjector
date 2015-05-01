@@ -130,9 +130,5 @@
 	"invalidVersion": {
 		"description": "Message for Importing Incorrect Version Data",
 		"message": "Import data version incompatible"
-	},
-	"debugText": {
-		"description": "Debug Mode text",
-		"message": "DEBUG MODE"
 	}
 }

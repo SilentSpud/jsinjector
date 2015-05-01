@@ -3,15 +3,13 @@ function replace(item,msg) {if (item) return item.innerText=chrome.i18n.getMessa
 replace($("div.title")[0],"extTitle");
 replace($("div.subtitle1")[0],"subtitle1");
 replace($("div.subtitle2")[0],"subtitle2");
-if (localStorage['debug']=="false") {
-	replace($("title")[0],"extName");
-	replace($("p.intro")[0],"introText");
-	replace($("p.feat")[0],"featText");
-	replace($("ul.feat_list>li")[0],"featureA");
-	replace($("ul.feat_list>li")[1],"featureB");
-	replace($("ul.feat_list>li")[2],"featureC");
-	replace($("ul.feat_list>li")[3],"featureD");
-}
+replace($("title")[0],"extName");
+replace($("p.intro")[0],"introText");
+replace($("p.feat")[0],"featText");
+replace($("ul.feat_list>li")[0],"featureA");
+replace($("ul.feat_list>li")[1],"featureB");
+replace($("ul.feat_list>li")[2],"featureC");
+replace($("ul.feat_list>li")[3],"featureD");
 replace($("div.url>label")[0],"url");
 replace($("div.description>label")[0],"desc");
 replace($("div.script>label")[0],"script");

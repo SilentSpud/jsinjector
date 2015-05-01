@@ -1,5 +1,3 @@
-// Debug Mode Toggle
-localStorage['debug']=false;
 
 database.open();
 database.createTable();
